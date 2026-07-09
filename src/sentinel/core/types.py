@@ -35,12 +35,12 @@ class PerceptionData:
 @dataclass
 class ContextData:
     """Output from Context module - processed understanding"""
-    timestamp: datetime = field(default_factory=datetime.now)
     perception: PerceptionData
     user_intent: Optional[str] = None
     contextual_information: Dict[str, Any] = field(default_factory=dict)
     relevant_memory: List['MemoryEntry'] = field(default_factory=list)
     analysis: Dict[str, Any] = field(default_factory=dict)
+    timestamp: datetime = field(default_factory=datetime.now)
 
     class Config:
         arbitrary_types_allowed = True
@@ -49,13 +49,13 @@ class ContextData:
 @dataclass
 class PlanData:
     """Output from Planning module - action plan"""
-    timestamp: datetime = field(default_factory=datetime.now)
     context: ContextData
     goal: str
     steps: List[Dict[str, Any]] = field(default_factory=list)
     reasoning: Optional[str] = None
     confidence: float = 0.0  # 0.0 to 1.0
     alternatives: List[Dict[str, Any]] = field(default_factory=list)
+    timestamp: datetime = field(default_factory=datetime.now)
 
     class Config:
         arbitrary_types_allowed = True
@@ -64,13 +64,13 @@ class PlanData:
 @dataclass
 class ExecutionResult:
     """Output from Execution module - action results"""
-    timestamp: datetime = field(default_factory=datetime.now)
     plan: PlanData
     success: bool
     output: Optional[str] = None
     error: Optional[str] = None
     executed_steps: List[Dict[str, Any]] = field(default_factory=list)
     side_effects: Dict[str, Any] = field(default_factory=dict)
+    timestamp: datetime = field(default_factory=datetime.now)
 
     class Config:
         arbitrary_types_allowed = True
@@ -79,13 +79,13 @@ class ExecutionResult:
 @dataclass
 class ReflectionData:
     """Output from Reflection module - analysis of execution"""
-    timestamp: datetime = field(default_factory=datetime.now)
     execution: ExecutionResult
     success_analysis: str
     lessons_learned: List[str] = field(default_factory=list)
     anomalies: List[str] = field(default_factory=list)
     recommendations: List[str] = field(default_factory=list)
     next_steps: Optional[str] = None
+    timestamp: datetime = field(default_factory=datetime.now)
 
     class Config:
         arbitrary_types_allowed = True
