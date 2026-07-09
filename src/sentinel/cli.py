@@ -159,7 +159,11 @@ async def main(
 
 if __name__ == "__main__":
 
-    @click.command()
+    @click.group()
+    def cli():
+        """Project Sentinel - Agentic Desktop Assistant"""
+
+    @cli.command(name="start")
     @click.option(
         "--iterations",
         "-i",
@@ -180,13 +184,19 @@ if __name__ == "__main__":
         is_flag=True,
         help="List available Ollama models",
     )
-    def cli(iterations: Optional[int], debug: bool, model: Optional[str], list_models: bool):
-        """Project Sentinel - Agentic Desktop Assistant (Local LLM Powered)"""
+    def start(iterations: Optional[int], debug: bool, model: Optional[str], list_models: bool):
+        """Start the agentic loop"""
         asyncio.run(main(
             max_iterations=iterations,
             debug=debug,
             model=model,
             list_models=list_models,
         ))
+
+    @cli.command(name="format")
+    def format_cmd():
+        """Open formatting panel (reads clipboard or stdin)"""
+        from sentinel.format_panel import main as format_main
+        format_main()
 
     cli()
