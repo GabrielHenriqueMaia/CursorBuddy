@@ -95,12 +95,12 @@ class ReflectionData:
 class MemoryEntry:
     """A single entry in the memory system"""
     id: str
-    timestamp: datetime = field(default_factory=datetime.now)
     category: str  # e.g., "workflow", "user_pattern", "success", "failure"
     content: Dict[str, Any] = field(default_factory=dict)
     relevance_score: float = 1.0
     tags: List[str] = field(default_factory=list)
     metadata: Dict[str, Any] = field(default_factory=dict)
+    timestamp: datetime = field(default_factory=datetime.now)
 
     class Config:
         arbitrary_types_allowed = True
