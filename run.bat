@@ -18,7 +18,8 @@ REM   run.bat format        -> abre o painel de formatação (clipboard/stdin)
 REM   run.bat [args...]    -> executa o CLI `sentinel.cli` com os argumentos informados
 
 IF "%1"=="format" (
-    python -m sentinel.format_panel
+    shift
+    python -m sentinel.cli format %*
 ) ELSE (
     python -m sentinel.cli %*
 )

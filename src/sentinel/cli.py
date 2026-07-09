@@ -194,9 +194,14 @@ if __name__ == "__main__":
         ))
 
     @cli.command(name="format")
-    def format_cmd():
+    @click.option(
+        "--always-on-top",
+        is_flag=True,
+        help="Open the formatter panel in always-on-top mode",
+    )
+    def format_cmd(always_on_top: bool):
         """Open formatting panel (reads clipboard or stdin)"""
         from sentinel.format_panel import main as format_main
-        format_main()
+        format_main(always_on_top=always_on_top)
 
     cli()
