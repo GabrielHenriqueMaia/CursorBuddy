@@ -228,6 +228,20 @@ async def main():
 asyncio.run(main())
 ```
 
+### Configuração de Atalho e App Executável
+
+- Para abrir a interface de configuração de hotkey, use:
+  ```bash
+  python -m sentinel.hotkey_config
+  ```
+- Adicione ou atualize sua tecla de atalho e gere o arquivo `format_hotkey.ahk` a partir da UI.
+- Use `run_hotkey_config.bat` para abrir rapidamente a interface no Windows.
+- Para gerar o executável de configuração:
+  ```bash
+  .\build_hotkey_app.bat
+  ```
+- O executável resultante estará em `dist\CursorBuddyHotkeyConfig.exe`.
+
 ### Usando Cloud APIs (OpenAI, Claude, Gemini)
 
 Se preferir usar cloud APIs:
